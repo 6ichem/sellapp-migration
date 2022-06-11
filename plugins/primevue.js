@@ -4,7 +4,8 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import ProgressSpinner from "primevue/progressspinner";
-import Message from "primevue/Message";
+import Message from "primevue/message";
+
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true });
   nuxtApp.vueApp.component("Card", Card);
