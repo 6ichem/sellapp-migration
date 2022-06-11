@@ -6,6 +6,8 @@
   </div>
 </template>
 
+<script setup></script>
+
 <style>
 body {
   background: #121212;

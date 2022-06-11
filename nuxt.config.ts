@@ -15,4 +15,15 @@ export default defineNuxtConfig({
   build: {
     transpile: ["primevue"],
   },
+
+  app: {
+    head: {
+      title: "Sell.app Migration",
+      viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+      charset: "utf-8",
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "./static/favicon.ico" },
+      ],
+    },
+  },
 });
