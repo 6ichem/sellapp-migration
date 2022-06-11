@@ -21,9 +21,7 @@ export default defineNuxtConfig({
       title: "Sell.app Migration",
       viewport: "width=device-width, initial-scale=1, maximum-scale=1",
       charset: "utf-8",
-      link: [
-        { rel: "icon", type: "image/x-icon", href: "./static/favicon.ico" },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
 });
