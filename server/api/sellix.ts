@@ -37,8 +37,6 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  console.log("errres", errorResponse);
-
   if (errorResponse) {
     event.res.statusCode = errorResponse.status;
     return errorResponse;

@@ -116,7 +116,7 @@ const submitData = async () => {
   }
 
   if (!isErrorSellapp.value && !isErrorSellix.value) {
-    const { pending, data, error, refresh } = useLazyFetch("/api/import", {
+    const { pending, data, error, refresh } = useLazyFetch("/api/sellix", {
       method: "POST",
       server: false,
       body: {
