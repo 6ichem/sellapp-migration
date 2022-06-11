@@ -7,4 +7,9 @@ export default defineNuxtConfig({
     "primevue/resources/primevue.css",
     "primeicons/primeicons.css",
   ],
+  vite: {
+    resolve: {
+      dedupe: ["vue"],
+    },
+  },
 });
