@@ -137,7 +137,10 @@ export const addToSellapp = (
           price: i.price,
           currency: i.currency,
         },
-        payment_methods: convertPaymentGateways(i.gateways),
+        payment_methods:
+          convertPaymentGateways(i.gateways).length > 0
+            ? convertPaymentGateways(i.gateways)
+            : ["COINBASE"],
         additional_information: i.custom_fields,
         bulk_discount: i.volume_discounts,
         minimum_purchase_quantity: i.quantity_min,
