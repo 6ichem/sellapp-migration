@@ -11,6 +11,6 @@
   },
   "dependencies": {
     "primeicons": "^5.0.0",
-    "primevue": "3.13.1"
+    "primevue": "^3.13.1"
   }
 }

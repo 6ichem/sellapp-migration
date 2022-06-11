@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="entry">
     <div class="center">
       <slot />
     </div>
@@ -11,7 +11,7 @@ export default {};
 </script>
 
 <style>
-#app {
+#entry {
   height: 100vh;
   display: flex;
 }

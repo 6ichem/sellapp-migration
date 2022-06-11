@@ -12,4 +12,7 @@ export default defineNuxtConfig({
       dedupe: ["vue"],
     },
   },
+  build: {
+    transpile: ["primevue"],
+  },
 });
