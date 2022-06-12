@@ -1,10 +1,14 @@
 import { addToSellapp } from "~~/services/sellapp";
-import { ResponseError, SellixResponseObject } from "~~/services/types";
+import {
+  RequestBody,
+  ResponseError,
+  SellixResponseObject,
+} from "~~/services/types";
 
 export default defineEventHandler(async (event) => {
   const body = await useBody(event);
   let errorResponse: ResponseError | null = null;
-  const { sellixAuth, sellappAuth } = body;
+  const { sellixAuth, sellappAuth, sellixShop }: RequestBody = body;
 
   let sellixProducts: any;
 
@@ -16,12 +20,14 @@ export default defineEventHandler(async (event) => {
         parseResponse: JSON.parse,
         headers: {
           Authorization: `Bearer ${sellixAuth}`,
+          ...(sellixShop.length > 1 && { "X-Sellix-Merchant": sellixShop }),
         },
       }
     );
     const { products } = sellixData;
     sellixProducts = products;
   } catch (e) {
+    console.log("error in MAIN API", e);
     const { status, error: errorMessage } = e.data;
     errorResponse = {
       status,
@@ -31,7 +37,7 @@ export default defineEventHandler(async (event) => {
   }
   if (sellixProducts) {
     try {
-      await addToSellapp(sellixProducts, sellappAuth, sellixAuth);
+      await addToSellapp(sellixProducts, sellappAuth, sellixAuth, sellixShop);
     } catch (e) {
       errorResponse = e;
     }

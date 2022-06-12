@@ -61,6 +61,15 @@
             >Invalid API key format.</small
           >
         </div>
+
+        <div style="margin-top: 1rem" class="toggle">
+          <span>Import products from a specific shop in your Sellix store</span>
+          <InputSwitch v-model="isShop" @change="!isShop" />
+        </div>
+        <span class="p-float-label" v-if="isShop" style="margin-top: 1rem">
+          <InputText id="sellixShop" type="text" v-model="sellixShop" />
+          <label for="sellixShop">Your Sellix shop name</label>
+        </span>
       </template>
       <template #footer>
         <Button
@@ -83,6 +92,8 @@ const isErrorSellix = ref(false);
 const isErrorSellapp = ref(false);
 const errormsg = ref("");
 const isSuccess = ref(false);
+const isShop = ref(false);
+const sellixShop = ref("");
 
 watch(sellappAuth, (val) => {
   if (val.trim().length > 0) {
@@ -122,6 +133,8 @@ const submitData = async () => {
       body: {
         sellixAuth: sellixAuth.value,
         sellappAuth: sellappAuth.value,
+        ...(isShop.value &&
+          sellixShop.length > 0 && { sellixShop: sellixShop.value }),
       },
     });
     loading.value = pending;
@@ -167,5 +180,14 @@ const submitData = async () => {
 
 a {
   text-decoration: none;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+}
+
+.toggle span:first-child {
+  margin-right: 1rem;
 }
 </style>

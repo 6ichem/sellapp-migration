@@ -29,7 +29,8 @@ export const convertPaymentGateways = (gateways) => {
 
 export const getProductDeliverables = async (
   uniqueId: string,
-  sellixAuth?: string
+  sellixAuth: string,
+  sellixShop?: string
 ): Promise<Deliverable> => {
   try {
     const { data } = await $fetch<any>(
@@ -39,6 +40,7 @@ export const getProductDeliverables = async (
         parseResponse: JSON.parse,
         headers: {
           Authorization: `Bearer ${sellixAuth}`,
+          ...(sellixShop.length > 1 && { "X-Sellix-Merchant": sellixShop }),
         },
       }
     );
@@ -111,6 +113,8 @@ export const getProductDeliverables = async (
         };
     }
   } catch (e) {
+    console.log("error in SELLAPP API", e);
+
     const { status, error: errorMessage } = e.data;
     throw {
       status,
@@ -123,7 +127,8 @@ export const getProductDeliverables = async (
 export const addToSellapp = (
   sellixProducts: any,
   sellappAuth: string,
-  sellixAuth: string
+  sellixAuth: string,
+  sellixShop?: string
 ) => {
   return new Promise((resolve, reject) => {
     sellixProducts.map(async (i: any) => {
@@ -132,7 +137,11 @@ export const addToSellapp = (
         description: i.description,
         order: i.sort_priority,
         visibility: "PUBLIC",
-        deliverable: await getProductDeliverables(i.uniqid, sellixAuth),
+        deliverable: await getProductDeliverables(
+          i.uniqid,
+          sellixAuth,
+          sellixShop
+        ),
         price: {
           price: i.price,
           currency: i.currency,

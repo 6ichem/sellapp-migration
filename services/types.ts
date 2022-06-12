@@ -43,3 +43,9 @@ export type SellixResponseObject = {
   env: string;
   data: { products: any };
 };
+
+export type RequestBody = {
+  sellixAuth: string;
+  sellappAuth: string;
+  sellixShop?: string;
+};
