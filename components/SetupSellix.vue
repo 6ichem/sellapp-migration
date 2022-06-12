@@ -134,7 +134,7 @@ const submitData = async () => {
         sellixAuth: sellixAuth.value,
         sellappAuth: sellappAuth.value,
         ...(isShop.value &&
-          sellixShop.length > 0 && { sellixShop: sellixShop.value }),
+          sellixShop.value.length > 1 && { sellixShop: sellixShop.value }),
       },
     });
     loading.value = pending;

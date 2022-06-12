@@ -40,7 +40,8 @@ export const getProductDeliverables = async (
         parseResponse: JSON.parse,
         headers: {
           Authorization: `Bearer ${sellixAuth}`,
-          ...(sellixShop.length > 1 && { "X-Sellix-Merchant": sellixShop }),
+          ...(sellixShop &&
+            sellixShop.length > 1 && { "X-Sellix-Merchant": sellixShop }),
         },
       }
     );
@@ -113,8 +114,6 @@ export const getProductDeliverables = async (
         };
     }
   } catch (e) {
-    console.log("error in SELLAPP API", e);
-
     const { status, error: errorMessage } = e.data;
     throw {
       status,

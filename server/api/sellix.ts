@@ -20,14 +20,15 @@ export default defineEventHandler(async (event) => {
         parseResponse: JSON.parse,
         headers: {
           Authorization: `Bearer ${sellixAuth}`,
-          ...(sellixShop.length > 1 && { "X-Sellix-Merchant": sellixShop }),
+          ...(sellixShop &&
+            sellixShop.length > 1 && { "X-Sellix-Merchant": sellixShop }),
         },
       }
     );
     const { products } = sellixData;
     sellixProducts = products;
   } catch (e) {
-    console.log("error in MAIN API", e);
+    console.log("lol", e);
     const { status, error: errorMessage } = e.data;
     errorResponse = {
       status,
