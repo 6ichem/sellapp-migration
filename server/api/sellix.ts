@@ -28,7 +28,6 @@ export default defineEventHandler(async (event) => {
     const { products } = sellixData;
     sellixProducts = products;
   } catch (e) {
-    console.log("lol", e);
     const { status, error: errorMessage } = e.data;
     errorResponse = {
       status,
