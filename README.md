@@ -1,6 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Sellapp Migration Tool
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Live deployment: https://sellapp-migration.netlify.app/
 
 ## Setup
 
